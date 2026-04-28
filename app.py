@@ -24,24 +24,29 @@ if __name__ == '__main__':
         import webbrowser
         from pyngrok import ngrok
         
-        # If you have an ngrok authtoken, uncomment and set it here
-        # ngrok.set_auth_token("YOUR_AUTHTOKEN_HERE")
+        from dotenv import load_dotenv
+        load_dotenv()
+        
+        # Set ngrok authtoken from .env file
+        auth_token = os.getenv("NGROK_AUTH_TOKEN")
+        if auth_token:
+            ngrok.set_auth_token(auth_token)
 
         def open_browser(url):
             webbrowser.open_new(url)
 
         # Start ngrok tunnel for local testing
         try:
-            public_url = ngrok.connect(5000).public_url
+            public_url = ngrok.connect(5001).public_url
             print("\n" + "="*50)
             print(f" * LOCAL NGROK URL: {public_url}")
             print("="*50 + "\n")
             Timer(1.5, open_browser, [public_url]).start()
         except Exception as e:
             print(f"Ngrok didn't start: {e}. Opening localhost...")
-            Timer(1.5, open_browser, ["http://localhost:5000/"]).start()
+            Timer(1.5, open_browser, ["http://localhost:5001/"]).start()
 
     except ImportError:
         print("Missing local dependencies (pyngrok, webbrowser). Running basic server.")
 
-    app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
+    app.run(debug=True, port=int(os.environ.get('PORT', 5001)))
