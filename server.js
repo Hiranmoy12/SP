@@ -21,7 +21,7 @@ app.get('/api/message', (req, res) => {
 
 // Serve index.html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'templates', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, async () => {
