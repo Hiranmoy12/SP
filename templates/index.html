@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Terminal Presentation Overlay -->
+    <div id="terminal-overlay" class="terminal-overlay">
+        <div class="terminal-content">
+            <span id="terminal-text"></span><span class="cursor">_</span>
+        </div>
+    </div>
+
+    <!-- Floating Bubbles Container -->
+    <div class="bubbles">
+        <!-- Bubbles will be injected by JS -->
+    </div>
+
+    <!-- 3D Scene Wrapper -->
+    <div class="scene">
+        <!-- Glassmorphism Card -->
+        <div class="glass-card" id="card">
+            <!-- 3D Elements protruding from card -->
+            <div class="card-content">
+                <h1 id="greeting" class="pop-out-1 reveal-text"></h1>
+                <p id="message" class="pop-out-2 reveal-text"></p>
+
+                <div class="flower-container pop-out-3 reveal-text">
+                    <div class="flower">
+                        <div class="petal petal-1"></div>
+                        <div class="petal petal-2"></div>
+                        <div class="petal petal-3"></div>
+                        <div class="petal petal-4"></div>
+                        <div class="center"></div>
+                    </div>
+                </div>
+
+                <p id="wishes" class="pop-out-2 reveal-text"></p>
+                <h2 id="signOff" class="pop-out-4 reveal-text"></h2>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

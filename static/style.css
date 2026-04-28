@@ -1,0 +1,269 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: 'Outfit', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e0031, #3c0042, #8b005d, #ab417f);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #ffffff;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 3D Scene Settings */
+.scene {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    /* Crucial for 3D effect */
+    z-index: 10;
+    position: relative;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    width: 600px;
+    max-width: 90%;
+    padding: 50px 40px;
+    background: rgba(255, 255, 255, 0.05);
+    /* very transparent */
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+
+    /* 3D Transform Settings */
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+    /* Smooth tilting */
+    transform: rotateX(0deg) rotateY(0deg);
+}
+
+/* Elements popping out in 3D */
+.card-content {
+    transform-style: preserve-3d;
+    text-align: center;
+}
+
+.reveal-text {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.reveal-text.show {
+    opacity: 1;
+}
+
+.pop-out-1 {
+    transform: translateZ(80px);
+    /* Pops out highly */
+    font-size: 3rem;
+    font-weight: 600;
+    color: #ffd1e8;
+    margin-bottom: 20px;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.pop-out-2 {
+    transform: translateZ(40px);
+    /* Pops out moderately */
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #ffe6f2;
+}
+
+.pop-out-4 {
+    transform: translateZ(60px);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-top: 10px;
+    color: #ff99cc;
+}
+
+.pop-out-3 {
+    transform: translateZ(100px);
+    /* Pops out the most */
+    margin: 30px 0;
+}
+
+/* 3D CSS Flower */
+.flower-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 500px;
+}
+
+.flower {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    animation: rotateFlower 8s linear infinite;
+    transform-style: preserve-3d;
+}
+
+@keyframes rotateFlower {
+    0% {
+        transform: rotateZ(0deg) translateZ(20px);
+    }
+
+    100% {
+        transform: rotateZ(360deg) translateZ(20px);
+    }
+}
+
+.petal {
+    position: absolute;
+    width: 30px;
+    height: 50px;
+    background: linear-gradient(to bottom, #ff99cc, #ff3385);
+    border-radius: 50% 50% 10% 10%;
+    top: 0;
+    left: 35px;
+    opacity: 0.85;
+    box-shadow: 0 0 15px rgba(255, 51, 133, 0.5);
+    transform-origin: 50% 100%;
+}
+
+.petal-1 {
+    transform: rotate(0deg) rotateX(-15deg);
+}
+
+.petal-2 {
+    transform: rotate(90deg) rotateX(-15deg);
+}
+
+.petal-3 {
+    transform: rotate(180deg) rotateX(-15deg);
+}
+
+.petal-4 {
+    transform: rotate(270deg) rotateX(-15deg);
+}
+
+.center {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #ffe6f2, #ffb3d9);
+    border-radius: 50%;
+    top: 35px;
+    left: 35px;
+    z-index: 5;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    transform: translateZ(5px);
+}
+
+/* Floating Bubbles */
+.bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    animation: rise infinite ease-in;
+}
+
+@keyframes rise {
+    0% {
+        bottom: -100px;
+        transform: translateX(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateX(100px);
+    }
+
+    100% {
+        bottom: 1080px;
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+}
+
+/* Terminal Presentation Overlay */
+.terminal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    transition: opacity 2s ease-in-out, visibility 2s;
+    text-align: center;
+    padding: 20px;
+}
+
+.terminal-overlay.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.terminal-content {
+    max-width: 800px;
+}
+
+.cursor {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
